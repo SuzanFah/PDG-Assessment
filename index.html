@@ -390,27 +390,6 @@ textarea.fi{resize:vertical;min-height:68px}
 </style>
 </head>
 <body>
-    <div style="font-size:.8rem;color:rgba(245,241,232,.5);margin-bottom:24px">Enter your Supabase credentials to enable shared storage across all devices</div>
-    <div style="margin-bottom:14px">
-      <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,241,232,.4);margin-bottom:6px">Supabase Project URL</label>
-      <input id="cfg-url" type="text" placeholder="https://xxxx.supabase.co" style="width:100%;padding:10px 13px;border-radius:8px;border:1px solid rgba(245,241,232,.15);background:rgba(245,241,232,.05);color:#F5F1E8;font-family:'Outfit',sans-serif;font-size:.85rem">
-    </div>
-    <div style="margin-bottom:20px">
-      <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,241,232,.4);margin-bottom:6px">Anon Public Key</label>
-      <input id="cfg-key" type="text" placeholder="eyJhbGciOiJIUzI1NiIs..." style="width:100%;padding:10px 13px;border-radius:8px;border:1px solid rgba(245,241,232,.15);background:rgba(245,241,232,.05);color:#F5F1E8;font-family:'Outfit',sans-serif;font-size:.85rem">
-    </div>
-    <button onclick="applyConfig()" style="width:100%;padding:13px;border-radius:10px;background:var(--gold);color:#0f0d0b;font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:700;border:none;cursor:pointer">Connect & Save Config</button>
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(245,241,232,.08);font-size:.75rem;color:rgba(245,241,232,.35)">
-      <strong style="color:rgba(245,241,232,.55)">Quick setup (2 min):</strong><br>
-      1. Go to <a href="https://supabase.com" target="_blank" style="color:var(--gold)">supabase.com</a> → New project (free)<br>
-      2. SQL Editor → run the table creation query from the setup guide<br>
-      3. Project Settings → API → copy URL + anon key → paste above
-    </div>
-  </div>
-</div>
-
-
-<!-- ═══════ HEADER ═══════════════════════════════════════ -->
 <header class="hdr">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
@@ -1290,26 +1269,9 @@ async function initRestore() {
 }
 initRestore();
 
-function applyConfig() {
-  const url = document.getElementById('cfg-url').value.trim();
-  const key = document.getElementById('cfg-key').value.trim();
-  if (!url || !key) { alert('Please enter both URL and key'); return; }
-  localStorage.setItem('pdg_supabase_url', url);
-  localStorage.setItem('pdg_supabase_key', key);
-  showToast('✓ Config saved — reloading…');
-  setTimeout(() => location.reload(), 1200);
-}
 
-// Load config from localStorage on start
-(function() {
-  const savedUrl = localStorage.getItem('pdg_supabase_url');
-  const savedKey = localStorage.getItem('pdg_supabase_key');
-  if (savedUrl && savedKey) {
-    // Patch the constants at runtime
-    window._SUPA_URL = savedUrl;
-    window._SUPA_KEY = savedKey;
-  }
-})();
+
+
 </script>
 </body>
 </html>
